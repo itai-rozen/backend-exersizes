@@ -105,15 +105,11 @@ yargs.command({
     handler: function () { 
         const { id } = yargs.argv
         const users = loadData()
-        const user = getUser(id)
-        const userIdx = getIdx(id)
+        const user = users.find(user => user.id === id)
         try {
             user.name = yargs.argv.newName || user.name 
             user.email = yargs.argv.newEmail || user.email 
             user.password = yargs.argv.newPassword || user.password
-            console.log('new name: ',yargs.argv.newName)
-            console.log('user: ',user)
-            users.splice(userIdx,1,user)
             saveToFile(users)
         } catch(e) {
             console.log('user not found');
@@ -134,15 +130,9 @@ yargs.command({
     handler: () => {
         const { id } = yargs.argv
         const users = loadData()
-        const user = getUser(id)
-        const userIdx = getIdx(id)
         try {
-            user.name = yargs.argv.newName || user.name 
-            user.email = yargs.argv.newEmail || user.email 
-            console.log('new name: ',yargs.argv.newName)
-            console.log('user: ',user)
-            users.splice(userIdx,1)
-            saveToFile(users)
+            const filteredUsers = users.filter(user => user.id !== id)
+            saveToFile(filteredUsers)
         } catch(e) {
             console.log('user not found');
         }
