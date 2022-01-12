@@ -1,8 +1,5 @@
 const yargs = require('yargs')(process.argv.slice(2))
 
-
-
-
 yargs.command({
     command: 'calc',
     describe: 'sums up two numbers',
@@ -71,4 +68,4 @@ yargs.command({
 })
 yargs.parse()
 
-// console.log(yargs.argv)
+

@@ -1,7 +1,6 @@
 const fs = require('fs')
 const yargs = require('yargs')
 const uniqid = require('uniqid'); 
-const { argv } = require('process');
 
 const loadData = () => {
     try {
@@ -20,12 +19,6 @@ const getUser = id => {
     const users = loadData()
     const foundUser = users.find(user => user.id === id)
     return foundUser
-}
-
-const getIdx = id => {
-    const users = loadData()
-    const userIdx = users.findIndex(user => user.id === id)
-    return (userIdx !== -1) ? userIdx : undefined
 }
 
 yargs.command({
@@ -61,6 +54,8 @@ yargs.command({
         saveToFile(usersArr)
     }
 })
+
+debugger;
 
 yargs.command({
     command: 'read',
