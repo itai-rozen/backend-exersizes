@@ -3,13 +3,14 @@ const cors = require('cors')
 const app = express()
 app.use(cors())
 app.use(express.json())
+app.set('view engine', 'hbs')
 
 const PORT = 5000
 const numbers = [1,2,3,4,5,6]
 
 
 app.get('/numbers', (req,res) => {
-    res.send(numbers)
+    res.render('numbers', {numbers:numbers})
 })
 
 app.post('/numbers/:newNum', (req,res) => {
