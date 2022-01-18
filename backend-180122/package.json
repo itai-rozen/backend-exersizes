@@ -1,0 +1,17 @@
+{
+  "name": "backend-180122",
+  "version": "1.0.0",
+  "description": "",
+  "main": "mongo.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "mongodb": "^4.3.0",
+    "mongoose": "^6.1.7",
+    "validator": "^13.7.0"
+  }
+}
