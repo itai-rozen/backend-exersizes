@@ -34,8 +34,9 @@ const ProductSchema = new Schema({
             type: Number,
             default: 0
         },
+
         images: {
-            type: Array,
+            type: [String],
             required:true,
             validate(arr){
                 if (arr.length < 2) throw new Error('images are not valid');

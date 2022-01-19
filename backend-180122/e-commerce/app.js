@@ -1,27 +1,24 @@
+const express = require('express')
+const dotenv = require('dotenv').config()
 const mongoose = require('mongoose')
-const Product = require('./model')
-const url = 'mongodb://localhost:27017/productsDb'
-
-mongoose.connect(url)
-console.log('connected successfully')
-
-const prod1 = new Product({
-    name: 'Ritai',
-    category: 'rubber duckies',
-    isActive: true,
-    details: {
-        description: 'description!!!!',
-        price: 50,
-        discount: 20,
-        images: ['asd.asd','sd.sd'],
-        phone: '0506819761'
-    }
-}) 
+const productRoutes = require('./routes/productRoutes')
+const app = express()
+app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
 
 
-prod1.save().then(() => {
-   return console.log(prod1)
-}).catch(err => {
-    return console.log(err)
+const PORT = process.env.PORT
+const url = `mongodb+srv://itai_rozen:${process.env.PASSWORD}@cluster0.sihrb.mongodb.net/productsDb?retryWrites=true&w=majority`
+
+app.use('/', productRoutes)
+
+
+mongoose.connect(url, () => {
+    console.log('connected to mongo')
+})
+
+
+app.listen(PORT, () => {
+    console.log('listening on port ', PORT)
 })
 
